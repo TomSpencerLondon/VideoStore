@@ -1,3 +1,5 @@
+require 'price'
+
 class Movie
   REGULAR = 0
   NEW_RELEASE = 1
@@ -6,8 +8,16 @@ class Movie
   attr_reader :title
   attr_accessor :price_code
 
-  def initialize(title, price_code)
+  def initialize(title, price)
     @title = title
-    @price_code = price_code
+    @price = price
+  end
+
+  def charge(days_rented)
+    @price.charge(days_rented)
+  end
+
+  def frequent_renter_points(days_rented)
+    @price.frequent_renter_points(days_rented)
   end
 end
